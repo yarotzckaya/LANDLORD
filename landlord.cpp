@@ -26,8 +26,6 @@ char getChar()                      // получение символа
 
 ///////////////////////////////// методы класса Tenant //////////////////////////
 
-//Tenant::Tenant(string str, int n) : name(str), aptNumber(n){} // REDEFINITION
-
 Tenant::~Tenant(){}
 
 int Tenant::getAptNumber()
@@ -109,14 +107,14 @@ int TenantList::getAptNo(string name)
 
 void TenantList::display()                                  // вывод списка жильцов
 {
-    cout << "\n Apt# \t Имя жильца\n ------------------\n";
+    cout << "\nApt# \tИмя жильца\n ------------------\n";
     if(pointersToTenants.empty()) {                         // если список жильцов пуст
         cout << "Нет жильцов" << endl;
     } else {
         pointersIterator = pointersToTenants.begin();
         
         while(pointersIterator != pointersToTenants.end()) {
-           cout << **pointersIterator++; 
+           cout << "    " << **pointersIterator++; 
         }
     }
 }
@@ -213,7 +211,7 @@ void RentRecord::display()
         iter = pointerToRows.begin();
         
         while(iter != pointerToRows.end()) {
-            cout << **iter++;
+            cout << "         " << **iter++;
         }
     }
 }
@@ -316,7 +314,7 @@ void ExpenseRecord::display()
         vectorIterator = pointerToExpences.begin();
         
         while(vectorIterator != pointerToExpences.end()) {
-            cout << **vectorIterator++;
+            cout << "    " << **vectorIterator++;
         }
     }
 }
@@ -342,7 +340,7 @@ float ExpenseRecord::displaySummary()           // используется пр
         if(tempCategory == (*vectorIterator)->category){       // та же категория
             sum += (*vectorIterator)->amount;
         } else {
-            cout << "\t" << tempCategory << "\t" << sum << endl;
+            cout << '\t' << tempCategory << '\t' << sum << endl;
             totalExpenses += sum;                           // прибавить предыдущую категорию
             
             tempCategory = (*vectorIterator)->category;
@@ -353,7 +351,7 @@ float ExpenseRecord::displaySummary()           // используется пр
     }
     
     totalExpenses += sum;           // прибавить сумму конечной категории
-    cout << "\t" << tempCategory << "\t" << sum << endl;
+    cout << '\t' << tempCategory << '\t' << sum << endl;
     return totalExpenses;
 }
 
@@ -397,9 +395,9 @@ void AnnualReport::display()
 {
     cout << "Годовой отчет" << endl;
     cout << "-------------------" << endl;
-    cout << "Доходы     " << "Арендная плата    " << endl;
+    cout << "Доходы:     " << "\nАрендная плата    " << endl;
     rents = pointerToRentRecord->getSumOfRents();
-    cout << rents << endl;
+    cout << "       " << rents << endl;
     cout << "Расходы    " << endl;
     expenses = pointerToExpenseRecord->displaySummary();
     cout << "\nБаланс   " << rents - expenses << endl;
@@ -445,9 +443,9 @@ void UserInterface::interact()
                     delete pointerToRentInputScreen;
                     break;
                 case 'e':
-                    pointerToExpenceInputScreen = new ExpenseInputScreen(pointerToExpenseRecord);
-                    pointerToExpenceInputScreen->setExpense();
-                    delete pointerToExpenceInputScreen;
+                    pointerToExpenseInputScreen = new ExpenseInputScreen(pointerToExpenseRecord);
+                    pointerToExpenseInputScreen->setExpense();
+                    delete pointerToExpenseInputScreen;
                     break;
                 default:
                     cout << "Неизвестная функция " << endl;

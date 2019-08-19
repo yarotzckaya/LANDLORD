@@ -269,7 +269,7 @@ class UserInterface
         RentRecord*         pointerToRentRecord;
         RentInputScreen*    pointerToRentInputScreen;
         ExpenseRecord*      pointerToExpenseRecord;
-        ExpenseInputScreen* pointerToExpenceInputScreen;
+        ExpenseInputScreen* pointerToExpenseInputScreen;
         AnnualReport*       pointerToAnnualReport;
         char ch;
         
